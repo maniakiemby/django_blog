@@ -27,12 +27,12 @@ def nowy(request):
             return redirect('strona:wpis', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'strona/edycja.html', {'form': form})
+    return render(request, 'strona/wpis.html', {'form': form})
 
 
 def wpis(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'strona/edycja.html', {'post': post})
+    return render(request, 'strona/wpis.html', {'post': post})
 
 
 @login_required
@@ -45,7 +45,7 @@ def edycja(request, pk):
             post.autor = request.user
             post.data_publikacji = timezone.now()
             post.save()
-            return redirect('strona:wpis', pk=post.pk)
+            return redirect('strona:edycja', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'strona/edycja.html', {'form': form})
