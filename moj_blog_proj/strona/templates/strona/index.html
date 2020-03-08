@@ -1,0 +1,14 @@
+{% extends 'strona/baza.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+    <div>
+        <div>
+            {{ post.data_publikacji }}
+        </div>
+        <h1><a href="{% url 'strona:wpis' pk=post.pk %}">
+        {{ post.tytul | linebreaksbr }}</a></h1> {% comment%} linebreaksbr formatowanie tekstu {% endcomment %}
+    </div>
+{% endfor %}
+{% endblock %}
